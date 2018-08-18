@@ -8,6 +8,7 @@ public class HeroManager : MonoBehaviour {
 	public float speed;
 
 	//メンバ変数
+	private GameObject damageProcessing;
 	private Vector2 heroPos;
 	private Animator animator;
 	private bool isTouched = false;
@@ -17,6 +18,7 @@ public class HeroManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator> ();
+		damageProcessing = GameObject.Find ("DamageProcessing");
 	}
 
 	void Update(){
@@ -55,11 +57,14 @@ public class HeroManager : MonoBehaviour {
 	}
 
 	void Attack01(){
-		iTween.MoveBy (gameObject, iTween.Hash("x",0.7,"isLocal",true,"oncomplete","Attack02","oncompletetarget",gameObject,"time",0.05f));
+		iTween.MoveBy (gameObject, iTween.Hash("x",0.7,"isLocal",true,
+			"oncomplete","Attack02","oncompletetarget",gameObject,"time",0.05f));
+		
 	}
 
 	void Attack02(){
 		iTween.MoveBy (gameObject, iTween.Hash ("x", -0.7,"isLocal",true,"time",0.05f));
+		damageProcessing.GetComponent<DamageProcessing> ().AttackToEnemy (10);
 	}
 
 }
