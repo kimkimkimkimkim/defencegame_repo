@@ -20,4 +20,6 @@ public class CreMonButton : MonoBehaviour {
 		hero.GetComponent<RectTransform> ().offsetMin = new Vector2 (238, 0);
 		//hero.transform.
 	}
+
+
 }

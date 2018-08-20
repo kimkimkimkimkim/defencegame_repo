@@ -6,12 +6,12 @@ public class HeroManager : MonoBehaviour {
 
 	//グローバル変数
 	public float speed;
+	public bool isTouched = false;
 
 	//メンバ変数
 	private GameObject damageProcessing;
 	private Vector2 heroPos;
 	private Animator animator;
-	private bool isTouched = false;
 	private bool didAttack = false;
 	private float time = 0;
 
@@ -48,11 +48,14 @@ public class HeroManager : MonoBehaviour {
 	}
 
 
-	void OnTriggerEnter2D (Collider2D other){
-		isTouched = true;
+	void OnTriggerEnter2D (Collider2D col){
+		Debug.Log ("col");
+		if (col.gameObject.tag == "EnemyDefence") {
+			isTouched = true;
+		}
 	}
 
-	void OnTriggerExit2D(Collider2D other){
+	void OnTriggerExit2D(Collider2D col){
 		isTouched = false;
 	}
 
